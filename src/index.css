@@ -1,0 +1,87 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+body {
+  @apply bg-paper text-ink font-body antialiased;
+  position: relative;
+}
+
+/* Subtle paper grain over the whole page */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 60;
+  opacity: 0.04;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+h1, h2, h3, h4 {
+  @apply font-display;
+}
+
+/* Cartoon focus ring */
+:focus-visible {
+  outline: 3px dashed #2B2118;
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+.sticker {
+  @apply border-[3px] border-ink rounded-card bg-white shadow-sticker;
+}
+
+.btn-cartoon {
+  @apply font-display border-[3px] border-ink rounded-xl px-4 py-2 bg-white shadow-stickerSm transition-all select-none;
+}
+.btn-cartoon:hover { transform: rotate(-1deg) translateY(-1px); }
+.btn-cartoon:active { transform: translate(2px, 2px); box-shadow: 1px 1px 0 #2B2118; }
+
+/* ECU LCD scanlines */
+.lcd {
+  background: #1c2a1e;
+  color: #9df29d;
+  font-family: ui-monospace, "Cascadia Mono", "Courier New", monospace;
+  position: relative;
+  overflow: hidden;
+}
+.lcd::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 0 2px,
+    rgba(0, 0, 0, 0.22) 2px 3px
+  );
+}
+
+/* Skeleton shimmer in cartoon style */
+.skeleton {
+  @apply rounded-xl border-[3px] border-ink/20 bg-cream relative overflow-hidden;
+}
+.skeleton::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.7), transparent);
+  animation: shimmer 1.2s infinite;
+}
+@keyframes shimmer { 100% { transform: translateX(100%); } }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001s !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001s !important;
+    scroll-behavior: auto !important;
+  }
+}
