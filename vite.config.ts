@@ -1,9 +1,7 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 
-// For GitHub Pages: set to "/<repo-name>/". Hash routing keeps deep links safe.
-// For Vercel or a custom domain, change to "/".
-const BASE = "/portfolio/";
+const BASE = "/LiveRepos/";
 
 export default defineConfig({
   base: BASE,
