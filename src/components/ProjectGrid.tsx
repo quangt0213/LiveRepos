@@ -1,7 +1,7 @@
 import { useMemo } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import type { SortMode } from "./LanguageFilter";
-import ProjectCard from "./ProjectGrid";
+import ProjectCard from "./ProjectCard";
 import { projects } from "../lib/projects";
 import { useGithubStore } from "../store/useGithubStore";
 
